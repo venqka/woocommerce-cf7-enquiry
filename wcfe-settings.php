@@ -40,3 +40,33 @@ function wcfe_update_settings() {
 
 }
 add_action( 'woocommerce_update_options_wcfe', 'wcfe_update_settings' );
+
+//Product settings
+
+function wcfe_add_product_settings() {
+
+?>
+	<div class="options_group">
+<?php
+		$disable_wcfe_args = array(
+			'id'      		=> 'wcfe_disabled',
+			'value'   		=> get_post_meta( get_the_ID(), 'wcfe_disabled', true ),
+			'label'   		=> __( 'Disable contact form 7 enquiry', 'wcfe' ),
+			'desc_tip' 		=> true,
+			'description' 	=> __( 'Check this to disable contact form 7 enquiry for this product', 'wcfe' ),
+		);
+		woocommerce_wp_checkbox( $disable_wcfe_args );
+
+?>
+	</div>
+<?php
+}
+add_action( 'woocommerce_product_options_general_product_data', 'wcfe_add_product_settings' );
+
+function wcfe_save_product_meta( $id, $post ){
+	
+	update_post_meta( $id, 'wcfe_disabled', $_POST['wcfe_disabled'] );
+	
+}
+add_action( 'woocommerce_process_product_meta', 'wcfe_save_product_meta', 10, 2 );
+

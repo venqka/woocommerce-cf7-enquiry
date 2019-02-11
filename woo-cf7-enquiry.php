@@ -16,6 +16,7 @@ function wcfe_load_text_domain() {
 add_action( 'init', 'wcfe_load_text_domain' );
 
 include( 'wcfe-settings.php' );
+include( 'wcfe-cf7-fields.php' );
 
 function disable_wcfe_product_purchase( $purchasable, $product ) {
 
@@ -35,7 +36,7 @@ function disable_wcfe_product_purchase( $purchasable, $product ) {
 	return $purchasable;
 
 }
-add_filter( 'woocommerce_is_purchasable', 'disable_wcfe_product_purchase', 20, 2 );
+add_filter( 'woocommerce_is_purchasable', 'disable_wcfe_product_purchase', 10, 2 );
 
 function wcfe_after_single_product_summary() {
 

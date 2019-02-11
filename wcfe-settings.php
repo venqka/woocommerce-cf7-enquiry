@@ -9,9 +9,20 @@ function wcfe_add_settings_tab( $settings_tabs ) {
 add_filter( 'woocommerce_settings_tabs_array', 'wcfe_add_settings_tab', 50 );
 
 function wcfe_settings_tab() {
-
-	woocommerce_admin_fields( wcfe_settings() );
-
+?>
+	<div>
+<?php
+		woocommerce_admin_fields( wcfe_settings() );
+?>
+	</div>
+	<div>
+		<p><?php _e( 'Use the following fields in your contact form:', 'wcfe' ); ?></p>
+		<ul>
+			<li>[product_url] - <?php _e( 'Outputs the url of the product', 'wcfe' ); ?></li>
+			<li>[product_title] - <?php _e( 'Outputs the title of the product', 'wcfe' ); ?></li>
+		</ul>
+	</div>
+<?php
 }
 add_action( 'woocommerce_settings_tabs_wcfe', 'wcfe_settings_tab' );
 

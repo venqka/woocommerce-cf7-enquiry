@@ -14,3 +14,5 @@ function wcfe_load_text_domain() {
 
 }
 add_action( 'init', 'wcfe_load_text_domain' );
+
+include( 'wcfe-settings.php' );
